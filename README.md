@@ -7,4 +7,4 @@ This repository is for the GovTech Technology Associate Programme (TAP) 2021 Tak
 ## Design decisions
 Due to relative lack of experience, the example site created at https://github.com/eugenefdw/to-do-site, which uses the guide from https://hassansaleh.info/,  will be used as the basis for this assessment submission. The tutorial uses a PERN stack, and roughly teaches how to use Docker for deployment.
 
-Any design decisions, deviations and sources used during this process will be listed below as I create the application.
+Any design decisions, deviations and learning resources used during this process will be listed below as I create the application.
