@@ -20,9 +20,12 @@ const createTableQuery = `
   )
 `;
 
-pool.query('SHOW SERVER_ENCODING', function (error, response) {
-  console.log(response);
-  pool.end();
+pool.query(createTableQuery, function (error, response) {
+  if (error) {
+    console.error(error);
+  } else {
+    console.log(response)
+  }
 });
 
 app.get('/', function (request, response) {
