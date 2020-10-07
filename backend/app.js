@@ -1,5 +1,7 @@
 const app = require('express')();
-const Pool = require('pg').Pool;
+app.use(require('cors')());
+app.use(require('body-parser').json());
+import { Pool } from 'pg';
 
 const pool = new Pool({
   database: 'postgres',
