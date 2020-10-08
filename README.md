@@ -18,3 +18,9 @@ checking postgres encoding - unknown how db is set up automatically by docker, h
 https://stackoverflow.com/q/6454146
 
 @m4dkip for discussing the table format
+- originally set both pkey and login to UNIQUE, was explained that pkey is inherently unique
+- warned not to do UNIQUE(id, login) as it makes it pairwise unique instead
+
+https://github.com/mui-org/material-ui/tree/master/docs/src/pages/getting-started/templates/dashboard
+
+
