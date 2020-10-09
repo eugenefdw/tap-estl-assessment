@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -121,6 +122,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  const [state, setState] = React.useState({
+    users: [],
+    isDataLoaded: false,
+  })
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -128,6 +133,29 @@ export default function Dashboard() {
     setOpen(false);
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+
+  async function getData() {
+    var returnedData = [];
+
+    axios.get('http://localhost:2021' + '/users')
+    .then(response => {
+      returnedData = response;
+      console.log(response);
+    }).catch(error => console.error(error));
+
+    console.log(returnedData);
+    setState((prevState) => ({
+      ...prevState,
+      users: returnedData,
+      isDataLoaded: true,
+    }));
+  }
+
+  useEffect(() => {
+    if(!state.isDataLoaded) {
+      getData();
+    }
+  });
 
   return (
     <div className={classes.root}>
