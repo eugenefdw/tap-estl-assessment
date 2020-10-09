@@ -37,10 +37,10 @@ pool.query(createTableQuery, function (error, response) {
 });
 
 function insertSingleEmployee(user, callback) {
-  pool.query(insertSingleEmployeeQuery, 
+  pool.query(insertSingleEmployeeQuery,
     [user.id, user.login, user.name, user, salary],
     function (error, repsonse) {
-      if(error) {
+      if (error) {
         callback(error, null);
       } else {
         callback(null, repsonse.rows[0]);
@@ -50,22 +50,22 @@ function insertSingleEmployee(user, callback) {
 
 function retrieveEmployeeData(callback) {
   pool.query(retrieveAllEmployeesQuery, function (error, response) {
-      if(error) {
-        callback(error, null);
-      } else {
-        callback(null, response.rows);
-      }
-    });
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, response.rows);
+    }
+  });
 }
 
 app.get('/', function (request, response) {
   response.send('test');
 });
 
-app.get('/users', function(request, response) {
+app.get('/users', function (request, response) {
   const params = request.params;
   retrieveEmployeeData(function (error, users) {
-    if(error) {
+    if (error) {
       response.sendStatus(500);
     } else {
       response.send(JSON.stringify(users));
@@ -73,11 +73,11 @@ app.get('/users', function(request, response) {
   });
 });
 
-app.post('/users/upload', function(request, response) {
+app.post('/users/upload', function (request, response) {
   const inputRows = request.body.file;
   inputRows.forEach(user => {
     insertSingleEmployee(user, function (error, addedUser) {
-      if(err) {
+      if (err) {
         res.sendStatus(500);
       } else {
         res.send(JSON.stringify(addedUser));
