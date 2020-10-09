@@ -107,3 +107,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# saved db data from backend
+postgres-data/
