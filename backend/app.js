@@ -19,6 +19,9 @@ const createTableQuery = `
     salary money
   )
 `;
+const retrieveAllEmployeesQuery = `
+  SELECT * FROM employees;
+`;
 
 pool.query(createTableQuery, function (error, response) {
   if (error) {
@@ -28,10 +31,31 @@ pool.query(createTableQuery, function (error, response) {
   }
 });
 
+function getEmployeeData(callback) {
+  pool.query(retrieveAllEmployeesQuery, function (error, response) {
+      if(error) {
+        callback(error, null);
+      } else {
+        callback(null, response.rows);
+      }
+    });
+}
+
 app.get('/', function (request, response) {
   response.send('test');
 });
 
-app.listen(2021, function() {
+app.get('/users', function(request, response) {
+  const params = request.params;
+  getEmployeeData(function (error, users) {
+    if(error) {
+      response.sendStatus(500);
+    } else {
+      response.send(JSON.stringify(users));
+    }
+  });
+});
+
+app.listen(2021, function () {
   console.log('Server started');
 });
