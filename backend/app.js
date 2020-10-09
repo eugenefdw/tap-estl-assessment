@@ -4,13 +4,7 @@ const app = require('express')();
 app.use(require('cors')());
 app.use(require('body-parser').json());
 
-const pool = new Pool({
-  database: 'postgres',
-  user: 'postgres',
-  password: 'tapestl',
-  host: 'localhost',
-  port: 5432
-});
+const pool = new Pool();
 
 const createTableQuery = `
   CREATE TABLE IF NOT EXISTS employees(
