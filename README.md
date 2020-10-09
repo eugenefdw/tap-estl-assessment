@@ -2,7 +2,14 @@
 This repository is for the GovTech Technology Associate Programme (TAP) 2021 Take Home Assessment from ETL, due 14 October 2020.
 
 ## How to start
-1. TODO
+Ensure the following is installed:
+- Docker version 19
+- npm version 6.14.8
+
+1. Run `docker-compose up` in root folder.
+1a. If first time running, terminate docker after db instance logs: "database systen is ready to accept connections", and run `docker-compose up` again
+2. Run `npm install` in \frontend folder
+3. Run `npm start` in \frontend folder
 
 ## Design decisions
 Due to relative lack of experience, the example site created at https://github.com/eugenefdw/to-do-site, which uses the guide from https://hassansaleh.info/,  will be used as the basis for this assessment submission. The tutorial uses a PERN stack, and roughly teaches how to use Docker for deployment.
