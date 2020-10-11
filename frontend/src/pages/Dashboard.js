@@ -142,10 +142,10 @@ export default function Dashboard() {
     var returnedData = [];
 
     axios.get('http://localhost:3000' + '/users')
-    .then(response => {
-      returnedData = response;
-      console.log(response);
-    }).catch(error => console.error(error));
+      .then(response => {
+        returnedData = response;
+        console.log(response);
+      }).catch(error => console.error(error));
 
     console.log(returnedData);
     setState((prevState) => ({
@@ -156,7 +156,7 @@ export default function Dashboard() {
   }
 
   useEffect(() => {
-    if(!state.isDataLoaded) {
+    if (!state.isDataLoaded) {
       getData();
     }
   });
