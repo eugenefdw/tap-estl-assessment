@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link as RouterLink, Switch, Route } from 'react-router-dom';
 import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,6 +24,9 @@ import MenuIcon from '@material-ui/icons/Menu';
 import PublishIcon from '@material-ui/icons/Publish';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+
+import Upload from './Upload';
+import Employees from './Employees';
 //import { mainListItems, secondaryListItems } from './listItems';
 
 function Copyright() {
@@ -196,7 +200,13 @@ export default function Dashboard() {
 
         <Divider />
         <List>
-          <ListItem button>
+          <ListItem button component={RouterLink} to={'/'}>
+            <ListItemIcon>
+              <PublishIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItem>
+          <ListItem button component={RouterLink} to={'/upload'}>
             <ListItemIcon>
               <PublishIcon />
             </ListItemIcon>
@@ -207,28 +217,10 @@ export default function Dashboard() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-              </Paper>
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-              </Paper>
-            </Grid>
-          </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
+        <Switch>
+          <Route exact path="/" component={Employees} />
+          <Route path="/upload" component={Upload} />
+        </Switch>
       </main>
     </div>
   );
