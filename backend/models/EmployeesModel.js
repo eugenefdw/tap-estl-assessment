@@ -73,12 +73,13 @@ exports.insertSingleEmployee = (user, callback) => {
 exports.retrieveEmployeeData = (params, callback) => {
   var selectionQuery = `
     SELECT * FROM employees
-    WHERE salary >= ${params.minSalary}
-    AND   salary <= ${params.maxSalary}
+    WHERE salary >= ${params.minSalary}::float8::numeric::money
+    AND   salary <= ${params.maxSalary}::float8::numeric::money
     ORDER BY ${params.column} ${params.ascending ? 'ASC' : 'DESC'}
     LIMIT ${params.limit}
     OFFSET ${params.offset};
-  `
+  `;
+
   pool.query(selectionQuery, function (error, response) {
     if (error) {
       callback(error, null);
