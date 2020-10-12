@@ -95,16 +95,19 @@ export default function EnhancedTable(props) {
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(-1);
   const [rows, setRows] = React.useState([]);
-  const [firstLoaded, setFirstLoaded] = React.useState(false);
   const rowsPerPage = 30;
 
 
-  async function getRowCount() {
-    axios.get('http://localhost:2021/users/count')
+  const getRowCount = useCallback(() => {
+    const params = {
+      minSalary: minimumSalary,
+      maxSalary: maximumSalary,
+    }
+    axios.get('http://localhost:2021/users/count', { params })
       .then(res => {
         setCount(+res.data[0].count);
       }).catch(err => console.error(err));
-  };
+  }, [minimumSalary, maximumSalary]);
 
   const getRows = useCallback(() => {
     const params = {
@@ -121,15 +124,9 @@ export default function EnhancedTable(props) {
   }, [order, orderBy, page, minimumSalary, maximumSalary]);
 
   useEffect(() => {
-    if (!firstLoaded) {
-      getRowCount();
-      setFirstLoaded(true);
-    }
-  }, [firstLoaded]);
-
-  useEffect(() => {
+    getRowCount();
     getRows();
-  }, [orderBy, page, order, getRows])
+  }, [orderBy, page, order, getRows, getRowCount])
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
