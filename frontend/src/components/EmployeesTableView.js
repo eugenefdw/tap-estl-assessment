@@ -144,8 +144,7 @@ export default function EnhancedTable() {
   async function getRowCount() {
     axios.get('http://localhost:2021/users/count')
       .then(response => {
-        console.log(response);
-        setCount(response);
+        setCount(response.data[0].count);
       }).catch(error => console.error(error));
   };
 
