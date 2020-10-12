@@ -15,4 +15,14 @@ router.get('/users', function (request, response) {
     });
 });
 
+router.get('/users/count', function (request, response) {
+  dataService.getCount((err, res) => {
+    if(err) {
+      response.sendStatus(500);
+    } else {
+      response.status(200).send(res);
+    }
+  })
+})
+
 module.exports = router;
