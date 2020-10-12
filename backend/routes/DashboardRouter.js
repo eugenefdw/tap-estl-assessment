@@ -10,7 +10,7 @@ router.get('/users', function (request, response) {
       if (err) {
         response.sendStatus(500);
       } else {
-        response.status(200).send(res);
+        response.status(200).send({results: res});
       }
     });
 });
