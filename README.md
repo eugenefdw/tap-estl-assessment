@@ -14,7 +14,10 @@ Ensure the following is installed:
 ## Misc
 Due to relative lack of experience, the example site created at https://github.com/eugenefdw/to-do-site, which uses the guide from https://hassansaleh.info/,  will be used as the basis for this assessment submission. The tutorial uses a PERN stack, and roughly teaches how to use Docker for deployment.
 
-Major credit to @m4dkip and @DigiPie for discussions and help with postgres, especially with confirming that my schemas and queries aren't too weird
+Major credit to @m4dkip and @DigiPie for discussions and help with postgres, especially with confirming that my schemas and queries aren't too weird. Postgres has pretty cool documentation too.
+
+https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870 for a really comprehensive overview on JS testing frameworks and telling me to try Jest.
+
 
 
 
