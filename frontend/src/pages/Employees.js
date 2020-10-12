@@ -1,4 +1,5 @@
 import { Grid, makeStyles, Paper } from '@material-ui/core';
+import EmployeesTableView from '../components/EmployeesTableView';
 import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
@@ -31,6 +32,7 @@ export default function Employees() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
+          <EmployeesTableView />
         </Grid>
       </Grid>
     </div>
