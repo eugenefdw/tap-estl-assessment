@@ -1,5 +1,9 @@
 const EmployeesModel = require('../models/EmployeesModel');
 
-exports.getDataAt = function (minSalary, maxSalary, offset, limit, sort, callback) {
+exports.getDataAt = function (params, callback) {
+  if(params.minSalary < params.maxSalary) {
+    callback("Minimum salary less than maximum salary", null);
+  }
 
+  
 }

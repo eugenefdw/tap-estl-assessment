@@ -5,16 +5,12 @@ const dataService = require('../services/EmployeeDataService');
 router.get('/users', function (request, response) {
   const params = request.query;
   dataService.getDataAt(
-    params.minSalary,
-    params.maxSalary,
-    params.offset,
-    params.limit,
-    params.sort,
+    params,
     (err, res) => {
       if (err) {
         response.sendStatus(500);
       } else {
-        response.sendStatus(200);
+        response.status(200).send(res);
       }
     });
 });
