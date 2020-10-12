@@ -24,5 +24,12 @@ exports.getDataAt = function (params, callback) {
   //get remaining column type from sort string
   params.column = params.sort.substring(1);
 
+  EmployeesModel.retrieveEmployeeData(params, (err, res) => {
+    if(err) {
+      callback(err, null);
+    } else {
+      callback(null, res);
+    }
+  })
 
 }
