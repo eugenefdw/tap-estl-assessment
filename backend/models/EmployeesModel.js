@@ -4,7 +4,7 @@ const pool = new Pool();
 
 const createTableQuery = `
   CREATE TABLE IF NOT EXISTS employees(
-    id int PRIMARY KEY,
+    id varchar(16) PRIMARY KEY,
     login varchar(32) UNIQUE,
     name varchar(64),
     salary money
@@ -21,13 +21,13 @@ const retrieveAllEmployeesQuery = `
 
 exports.initializeTable = () => {
   pool.query(createTableQuery, function (error, response) {
-  if (error) {
-    console.error(error);
-  } else {
-    //console.log(response)
-    console.log("Table initialized");
-  }
-})};
+    if (error) {
+      console.error(error);
+    } else {
+      console.log("Table initialized");
+    }
+  })
+};
 
 exports.insertSingleEmployee = (user, callback) => {
   pool.query(insertSingleEmployeeQuery,
