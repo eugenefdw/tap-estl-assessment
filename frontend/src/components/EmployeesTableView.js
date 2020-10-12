@@ -95,7 +95,7 @@ export default function EnhancedTable() {
   const [rows, setRows] = React.useState([]);
   const [firstLoaded, setFirstLoaded] = React.useState(false);
   const rowsPerPage = 30;
-  
+
 
   async function getRowCount() {
     axios.get('http://localhost:2021/users/count')
@@ -108,9 +108,9 @@ export default function EnhancedTable() {
     const params = {
       minSalary: 0,
       maxSalary: 40000,
-      offset: page*rowsPerPage,
+      offset: page * rowsPerPage,
       limit: 30,
-      sort: `${order==='asc'?'+':'-'}${orderBy}`,
+      sort: `${order === 'asc' ? '+' : '-'}${orderBy}`,
     }
     console.log(params);
     axios.get('http://localhost:2021/users', { params })
@@ -162,24 +162,24 @@ export default function EnhancedTable() {
             />
             <TableBody>
               {rows.map((row, index) => {
-                  const labelId = `enhanced-table-checkbox-${index}`;
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={row.id}
-                    >
-                      <TableCell width="15%" component="th" id={labelId} scope="row" padding="none">
-                        {row.id}
-                      </TableCell>
-                      <TableCell width="25%" align="left">{row.login}</TableCell>
-                      <TableCell width="30%"align="left">{row.name}</TableCell>
-                      <TableCell width="30%" align="right">{row.salary.toFixed(2)}</TableCell>
-                    </TableRow>
-                  );
-                })}
+                return (
+                  <TableRow
+                    hover
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={row.id}
+                  >
+                    <TableCell width="15%" component="th" id={labelId} scope="row" padding="none">
+                      {row.id}
+                    </TableCell>
+                    <TableCell width="25%" align="left">{row.login}</TableCell>
+                    <TableCell width="30%" align="left">{row.name}</TableCell>
+                    <TableCell width="30%" align="right">{row.salary.toFixed(2)}</TableCell>
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
         </TableContainer>
