@@ -7,7 +7,7 @@ Ensure the following is installed:
 - npm version 6.14.8
 
 1. Run `docker-compose up` in root folder.
-1a. If first time running, terminate docker after db instance logs: "database systen is ready to accept connections", and run `docker-compose up` again
+- If first time running, terminate docker after db instance logs: "database systen is ready to accept connections", and run `docker-compose up` again. This is to ensure the database instance is fully initialised.
 2. Run `npm install` in \frontend folder
 3. Run `npm start` in \frontend folder
 
