@@ -54,7 +54,7 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'id', numeric: false, disablePadding: true, label: 'Employee ID' },
+  { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
   { id: 'login', numeric: false, disablePadding: false, label: 'Login' },
   { id: 'name', numeric: false, disablePadding: false, label: 'Name' },
   { id: 'salary', numeric: true, disablePadding: false, label: 'Salary' },
@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
   },
   table: {
-    minWidth: 750,
+    minWidth: 512,
   },
   visuallyHidden: {
     border: 0,
@@ -188,12 +188,12 @@ export default function EnhancedTable() {
                       tabIndex={-1}
                       key={row.id}
                     >
-                      <TableCell component="th" id={labelId} scope="row" padding="none">
+                      <TableCell width="15%" component="th" id={labelId} scope="row" padding="none">
                         {row.id}
                       </TableCell>
-                      <TableCell align="left">{row.login}</TableCell>
-                      <TableCell align="left">{row.name}</TableCell>
-                      <TableCell align="right">{row.salary.toFixed(2)}</TableCell>
+                      <TableCell width="25%" align="left">{row.login}</TableCell>
+                      <TableCell width="30%"align="left">{row.name}</TableCell>
+                      <TableCell width="30%" align="right">{row.salary.toFixed(2)}</TableCell>
                     </TableRow>
                   );
                 })}
