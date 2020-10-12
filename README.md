@@ -25,6 +25,7 @@ https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9
 - npm version 6.14.8
 - docker desktop for windows 2.4.0.0 running through WSL 2
 - docker version 19.03.13, build 4484c46d9d
+- jest 26.5.3
 
 ### Backend
 - express 4.17.1
