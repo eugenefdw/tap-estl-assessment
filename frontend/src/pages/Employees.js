@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
   salaryFilterRow: {
 
   },
+  table: {
+    margin: '25px',
+  },
 }));
 
 export default function Employees() {
@@ -32,7 +35,9 @@ export default function Employees() {
           </Grid>
         </Grid>
         <Grid item xs={12}>
-          <EmployeesTableView />
+          <div className={classes.table}>
+            <EmployeesTableView />
+          </div>
         </Grid>
       </Grid>
     </div>
