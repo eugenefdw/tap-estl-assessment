@@ -89,9 +89,11 @@ exports.retrieveEmployeeData = (params, callback) => {
   });
 }
 
-exports.retrieveEmployeeCount = (callback) => {
+exports.retrieveEmployeeCount = (params, callback) => {
   var countQuery = `
-    SELECT count(*) FROM employees;
+    SELECT count(*) FROM employees
+    WHERE salary >= ${params.minSalary}::float8::numeric::money
+    AND   salary <= ${params.maxSalary}::float8::numeric::money;
   `;
 
   pool.query(countQuery, function (err, res) {
