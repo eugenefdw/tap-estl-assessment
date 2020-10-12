@@ -41,20 +41,20 @@ export default function Employees() {
           <Grid item lg={4} md={6} sm={12} xs={12}>
             <Paper>
               <Grid item>
-              Minimum Salary
+                Minimum Salary
               </Grid>
               <Grid item>
-              <Input type="number" value={minSalary} onChange={handleMinSalarySubmit} />
+                <Input type="number" value={minSalary} onChange={handleMinSalarySubmit} />
               </Grid>
             </Paper>
           </Grid>
           <Grid item lg={4} md={6} sm={12} xs={12}>
             <Paper>
               <Grid item>
-              Maximum Salary
+                Maximum Salary
               </Grid>
               <Grid item>
-              <Input type="number" value={maxSalary} onChange={handleMaxSalarySubmit} />
+                <Input type="number" value={maxSalary} onChange={handleMaxSalarySubmit} />
               </Grid>
             </Paper>
           </Grid>

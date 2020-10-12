@@ -24,7 +24,7 @@ export default function Upload() {
   };
 
   const submitFiles = () => {
-    if(files.length === 0) {
+    if (files.length === 0) {
       return;
     }
     var formData = new FormData();

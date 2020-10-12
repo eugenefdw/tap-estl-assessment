@@ -10,7 +10,7 @@ router.post('/users/upload', (req, response) => {
     return;
   }
 
-  if(isUploading) {
+  if (isUploading) {
     response.sendStatus(500);
     return;
   }
@@ -23,7 +23,7 @@ router.post('/users/upload', (req, response) => {
     } else {
       response.sendStatus(200);
     }
-  });  
+  });
 });
 
 module.exports = router;
