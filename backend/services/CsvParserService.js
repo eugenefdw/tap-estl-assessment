@@ -10,8 +10,8 @@ exports.parseCsvFile = function (file, callback) {
     skipEmptyLines: true,
   }
   var results = Papa.parse(file.data.toString('utf-8'), config);
-   handleData(results, (err, res) => {
-    if(err) {
+  handleData(results, (err, res) => {
+    if (err) {
       callback(err, null);
     } else {
       callback(null, res);
@@ -23,13 +23,13 @@ function handleData(parseResults, callback) {
   var rowsProcessed = 0;
   parseResults.data.slice(1).forEach(row => {
     var error = handleRow(row);
-    if(error) {
+    if (error) {
       callback(error, null);
     }
     rowsProcessed++;
   });
   EmployeesModel.insertMultipleEmployees(parseResults.data.slice(1), (error, res) => {
-    if(error) {
+    if (error) {
       callback(error, null);
     } else {
       callback(null, res);
