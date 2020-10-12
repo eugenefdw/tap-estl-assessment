@@ -33,6 +33,6 @@ exports.getDataAt = function (params, callback) {
   });
 }
 
-exports.getCount = (callback) => {
-  EmployeesModel.retrieveEmployeeCount(callback);
+exports.getCount = (params, callback) => {
+  EmployeesModel.retrieveEmployeeCount(params, callback);
 }
