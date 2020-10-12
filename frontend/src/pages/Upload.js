@@ -17,7 +17,6 @@ export default function Upload() {
   });
 
   const handleDropzoneChange = (inFiles) => {
-    console.log(inFiles);
     setState((prevState) => ({
       ...prevState,
       files: inFiles,

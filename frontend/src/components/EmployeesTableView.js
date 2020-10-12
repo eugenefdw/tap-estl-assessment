@@ -112,10 +112,8 @@ export default function EnhancedTable() {
       limit: 30,
       sort: `${order === 'asc' ? '+' : '-'}${orderBy}`,
     }
-    console.log(params);
     axios.get('http://localhost:2021/users', { params })
       .then(response => {
-        console.log(response.data);
         setRows(response.data.results);
       }).catch(error => console.error(error));
   }, [order, orderBy, page]);
@@ -129,7 +127,6 @@ export default function EnhancedTable() {
 
   useEffect(() => {
     getRows();
-    console.log("UPDATE");
   }, [orderBy, page, order, getRows])
 
   const handleRequestSort = (event, property) => {
