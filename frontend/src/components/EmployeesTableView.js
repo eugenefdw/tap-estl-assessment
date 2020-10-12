@@ -12,47 +12,6 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 
-function createData(id, login, name, salary) {
-  return { id, login, name, salary };
-};
-
-const rows = [
-  createData('e0002', 'rwesley', 'Ron Weasley', 19234.50),
-  createData('e0003', 'ssnape', 'Severus Snape', 4000.0),
-  createData('e0004', 'rhagrid', 'Rubeus Hagrid', 3999.999),
-  createData('e0005', 'voldemort', 'Lord Voldemort', 523.4),
-  createData('e0006', 'gwesley', 'Ginny Weasley', 4000.004),
-  createData('e0007', 'hgranger', 'Hermione Granger', 0.0),
-  createData('e0009', 'dmalfoy', 'Draco Malfoy', 34234.5),
-  createData('e0010', 'basilisk', 'Basilisk', 23.43),
-];
-
-function descendingComparator(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-function getComparator(order, orderBy) {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, orderBy)
-    : (a, b) => -descendingComparator(a, b, orderBy);
-}
-
-function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = comparator(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map((el) => el[0]);
-}
-
 const headCells = [
   { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
   { id: 'login', numeric: false, disablePadding: false, label: 'Login' },
@@ -177,8 +136,7 @@ export default function EnhancedTable() {
               rowCount={rows.length}
             />
             <TableBody>
-              {stableSort(rows, getComparator(order, orderBy))
-                .map((row, index) => {
+              {rows.map((row, index) => {
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
