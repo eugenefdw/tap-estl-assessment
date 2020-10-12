@@ -1,6 +1,6 @@
 import { Grid, Input, makeStyles, Paper } from '@material-ui/core';
 import EmployeesTableView from '../components/EmployeesTableView';
-import React, { useState } from 'react';
+import React from 'react';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,14 +43,22 @@ export default function Employees() {
         <Grid container item xs={12} spacing={4} alignItems="center" justify="center">
           <Grid item lg={4} md={6} sm={12} xs={12}>
             <Paper>
+              <Grid item>
+              Minimum Salary
+              </Grid>
+              <Grid item>
               <Input type="number" value={minSalary} onChange={handleMinSalarySubmit} />
-              FILTER
+              </Grid>
             </Paper>
           </Grid>
           <Grid item lg={4} md={6} sm={12} xs={12}>
             <Paper>
+              <Grid item>
+              Maximum Salary
+              </Grid>
+              <Grid item>
               <Input type="number" value={maxSalary} onChange={handleMaxSalarySubmit} />
-              FILTER
+              </Grid>
             </Paper>
           </Grid>
         </Grid>
