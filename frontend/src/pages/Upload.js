@@ -19,12 +19,11 @@ export default function Upload() {
   const submitFiles = () => {
     var formData = new FormData();
     state.files.forEach(file => {
-      formData.append('file', file);
+      formData.append('file', new File([file], file.name, {type: 'text/csv'}));
     });
-    console.log('posted');
     axios.post('http://localhost:2021/users/upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     .then((response) => {
-      console.log(response)
+      console.log(response);
     }).catch((error) => {
       console.error(error);
     });
