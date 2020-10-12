@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const parser = require('../services/CsvParser');
+const parser = require('../services/CsvParserService');
 
 var isUploading = false;
 
