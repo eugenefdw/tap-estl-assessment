@@ -88,3 +88,17 @@ exports.retrieveEmployeeData = (params, callback) => {
     }
   });
 }
+
+exports.retrieveEmployeeCount = (params, callback) => {
+  var countQuery = `
+    SELECT count(*) FROM employees;
+  `;
+
+  pool.query(countQuery, function (error, response) {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, response.rows);
+    }
+  });
+}
