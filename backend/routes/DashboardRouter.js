@@ -16,7 +16,7 @@ router.get('/users', function (request, response) {
 });
 
 router.get('/users/count', function (request, response) {
-  dataService.getCount((err, res) => {
+  dataService.getCount(request.query, (err, res) => {
     if(err) {
       response.sendStatus(500);
     } else {
