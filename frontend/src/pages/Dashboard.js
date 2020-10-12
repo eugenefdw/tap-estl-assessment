@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link as RouterLink, Switch, Route, useLocation } from 'react-router-dom';
-import axios from 'axios';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
-import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -15,33 +13,14 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import PublishIcon from '@material-ui/icons/Publish';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import SearchIcon from '@material-ui/icons/Search';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import Upload from './Upload';
 import Employees from './Employees';
 //import { mainListItems, secondaryListItems } from './listItems';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const drawerWidth = 240;
 
@@ -127,40 +106,13 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
-  const [state, setState] = React.useState({
-    users: [],
-    isDataLoaded: false,
-  })
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
-
-  async function getData() {
-    var returnedData = [];
-
-    axios.get('http://localhost:2021' + '/users')
-      .then(response => {
-        returnedData = response;
-        console.log(response);
-      }).catch(error => console.error(error));
-
-    console.log(returnedData);
-    setState((prevState) => ({
-      ...prevState,
-      users: returnedData,
-      isDataLoaded: true,
-    }));
-  }
-
-  useEffect(() => {
-    if (!state.isDataLoaded) {
-      getData();
-    }
-  });
 
   return (
     <div className={classes.root}>
