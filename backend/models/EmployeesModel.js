@@ -29,6 +29,35 @@ exports.initializeTable = () => {
   })
 };
 
+exports.insertMultipleEmployees = (users, callback) => {
+  var insertionQuery = `
+  BEGIN;
+  `
+  users.forEach(row => {
+    insertionQuery += `
+    INSERT INTO employees(id, login, name, salary)
+    VALUES ('${row[0]}', '${row[1]}', '${row[2]}', ${row[3]})
+    ON CONFLICT (id)
+    DO
+      UPDATE
+      SET login = '${row[1]}', 
+          name = '${row[2]}', 
+          salary = ${row[3]};
+    `
+  });
+
+  insertionQuery += `
+  COMMIT;
+  `
+  pool.query(insertionQuery, function (error, response) {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, response.rows);
+    }
+  })
+};
+
 exports.insertSingleEmployee = (user, callback) => {
   pool.query(insertSingleEmployeeQuery,
     [user.id, user.login, user.name, user, salary],
