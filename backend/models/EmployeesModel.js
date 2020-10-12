@@ -89,7 +89,7 @@ exports.retrieveEmployeeData = (params, callback) => {
   });
 }
 
-exports.retrieveEmployeeCount = (params, callback) => {
+exports.retrieveEmployeeCount = (callback) => {
   var countQuery = `
     SELECT count(*) FROM employees;
   `;
