@@ -1,8 +1,13 @@
 const Pool = require('pg').Pool;
+const Papa = require('papaparse');
+const fs = require('fs');
 
 const app = require('express')();
+const fileUpload = require('express-fileupload');
 app.use(require('cors')());
 app.use(require('body-parser').json());
+app.use(fileUpload());
+
 
 const pool = new Pool();
 
@@ -68,17 +73,25 @@ app.get('/users', function (request, response) {
   });
 });
 
-app.post('/users/upload', function (request, response) {
-  const inputRows = request.body.file;
-  inputRows.forEach(user => {
-    insertSingleEmployee(user, function (error, addedUser) {
-      if (err) {
-        res.sendStatus(500);
-      } else {
-        res.send(JSON.stringify(addedUser));
-      }
-    });
-  });
+app.post('/users/upload', async (request, response) => {
+  try {
+    if(!request.files) {
+      response.send({
+        status: false,
+        message: 'No file uploaded'
+      });
+    } else {
+      var results = Papa.parse(request.files.file.data.toString('utf-8'));
+      console.log(results);
+      response.send({
+        status: true,
+        message: 'File is uploaded',
+        data: results
+      })
+    }
+  } catch (error) {
+    response.status(500).send(error);
+  }
 });
 
 app.listen(2021, function () {
