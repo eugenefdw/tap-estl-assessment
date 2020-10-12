@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const parser = require('../services/CsvParser');
 
-router.post('/users/upload', (request, response) => {
-  if (!request.files) {
+router.post('/users/upload', (req, response) => {
+  if (!req.files) {
     response.send({
       status: false,
       message: 'No file uploaded'
@@ -11,17 +11,13 @@ router.post('/users/upload', (request, response) => {
     return;
   }
 
-  parser.parseCsvFile(request.files.file, (error, data) => {
-    if(error) {
-      response.sendStatus(500).send(error);
+  parser.parseCsvFile(req.files.file, (error, res) => {
+    if (error) {
+      response.sendStatus(500);
     } else {
-      response.send({
-        status: true,
-        message: 'File is uploaded',
-        rows: data
-      });
+      response.sendStatus(200);
     }
-  });
+  });  
 });
 
 module.exports = router;
