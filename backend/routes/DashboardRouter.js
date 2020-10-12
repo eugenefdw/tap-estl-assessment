@@ -3,10 +3,7 @@ const router = express.Router();
 const dataService = require('../services/EmployeeDataService');
 
 router.get('/users', function (request, response) {
-  const params = request.query;
-  dataService.getDataAt(
-    params,
-    (err, res) => {
+  dataService.getDataAt(request.query, (err, res) => {
       if (err) {
         response.sendStatus(500);
       } else {
