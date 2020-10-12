@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { DropzoneArea } from 'material-ui-dropzone';
-import { Box, Button, Container, makeStyles } from '@material-ui/core';
+import { Button, Container, makeStyles } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
