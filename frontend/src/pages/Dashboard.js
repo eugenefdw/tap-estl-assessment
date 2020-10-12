@@ -23,6 +23,7 @@ import Link from '@material-ui/core/Link';
 import MenuIcon from '@material-ui/icons/Menu';
 import PublishIcon from '@material-ui/icons/Publish';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import SearchIcon from '@material-ui/icons/Search';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import Upload from './Upload';
@@ -197,7 +198,7 @@ export default function Dashboard() {
         <List>
           <ListItem button component={RouterLink} to={'/'}>
             <ListItemIcon>
-              <PublishIcon />
+              <SearchIcon />
             </ListItemIcon>
             <ListItemText primary="Dashboard" />
           </ListItem>
