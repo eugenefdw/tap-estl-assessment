@@ -141,7 +141,7 @@ export default function Dashboard() {
   async function getData() {
     var returnedData = [];
 
-    axios.get('http://localhost:3000' + '/users')
+    axios.get('http://localhost:2021' + '/users')
       .then(response => {
         returnedData = response;
         console.log(response);

@@ -22,7 +22,7 @@ export default function Upload() {
       formData.append('file', file);
     });
     console.log('posted');
-    axios.post('http://localhost:3000/users/upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    axios.post('http://localhost:2021/users/upload', formData, {headers: {'Content-Type': 'multipart/form-data'}})
     .then((response) => {
       console.log(response)
     }).catch((error) => {
