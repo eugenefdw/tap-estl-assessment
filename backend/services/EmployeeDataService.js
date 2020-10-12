@@ -1,12 +1,12 @@
 const EmployeesModel = require('../models/EmployeesModel');
 
 exports.getDataAt = function (params, callback) {
-  if(params.minSalary > params.maxSalary) {
+  if(+params.minSalary > +params.maxSalary) {
     callback("Minimum salary more than maximum salary", null);
     return;
   }
 
-  if(params.limit > 30) {
+  if(+params.limit > 30) {
     callback("Maximum query size is 30", null);
     return;
   }
