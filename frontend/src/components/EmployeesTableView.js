@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import axios from 'axios';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -89,23 +89,48 @@ const useStyles = makeStyles((theme) => ({
 export default function EnhancedTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('id');
   const [page, setPage] = React.useState(0);
   const [count, setCount] = React.useState(-1);
+  const [rows, setRows] = React.useState([]);
+  const [firstLoaded, setFirstLoaded] = React.useState(false);
   const rowsPerPage = 30;
   
-  useEffect(() => {
-    if (count === -1) {
-      getRowCount();
-    }
-  });
 
   async function getRowCount() {
     axios.get('http://localhost:2021/users/count')
       .then(response => {
-        setCount(response.data[0].count);
+        setCount(+response.data[0].count);
       }).catch(error => console.error(error));
   };
+
+  const getRows = useCallback(() => {
+    const params = {
+      minSalary: 0,
+      maxSalary: 40000,
+      offset: page*rowsPerPage,
+      limit: 30,
+      sort: `${order==='asc'?'+':'-'}${orderBy}`,
+    }
+    console.log(params);
+    axios.get('http://localhost:2021/users', { params })
+      .then(response => {
+        console.log(response.data);
+        setRows(response.data);
+      }).catch(error => console.error(error));
+  }, [order, orderBy, page]);
+
+  useEffect(() => {
+    if (!firstLoaded) {
+      getRowCount();
+      setFirstLoaded(true);
+    }
+  }, [firstLoaded]);
+
+  useEffect(() => {
+    getRows();
+    console.log("UPDATE");
+  }, [orderBy, page, order, getRows])
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -162,7 +187,7 @@ export default function EnhancedTable() {
           component="div"
           count={count}
           rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={30}
+          rowsPerPageOptions={[30]}
           page={page}
           onChangePage={handleChangePage}
         />
