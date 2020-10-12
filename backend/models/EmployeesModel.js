@@ -20,9 +20,9 @@ const retrieveAllEmployeesQuery = `
 `;
 
 exports.initializeTable = () => {
-  pool.query(createTableQuery, function (error, response) {
-    if (error) {
-      console.error(error);
+  pool.query(createTableQuery, function (err, res) {
+    if (err) {
+      console.error(err);
     } else {
       console.log("Table initialized");
     }
@@ -49,11 +49,11 @@ exports.insertMultipleEmployees = (users, callback) => {
   insertionQuery += `
   COMMIT;
   `
-  pool.query(insertionQuery, function (error, response) {
-    if (error) {
-      callback(error, null);
+  pool.query(insertionQuery, function (err, res) {
+    if (err) {
+      callback(err, null);
     } else {
-      callback(null, response.rows);
+      callback(null, res.rows);
     }
   })
 };
@@ -61,11 +61,11 @@ exports.insertMultipleEmployees = (users, callback) => {
 exports.insertSingleEmployee = (user, callback) => {
   pool.query(insertSingleEmployeeQuery,
     [user.id, user.login, user.name, user, salary],
-    function (error, repsonse) {
-      if (error) {
-        callback(error, null);
+    function (err, res) {
+      if (err) {
+        callback(err, null);
       } else {
-        callback(null, repsonse.rows[0]);
+        callback(null, res.rows[0]);
       }
     });
 }
@@ -80,11 +80,11 @@ exports.retrieveEmployeeData = (params, callback) => {
     OFFSET ${params.offset};
   `;
 
-  pool.query(selectionQuery, function (error, response) {
-    if (error) {
-      callback(error, null);
+  pool.query(selectionQuery, function (err, res) {
+    if (err) {
+      callback(err, null);
     } else {
-      callback(null, response.rows);
+      callback(null, res.rows);
     }
   });
 }
@@ -94,11 +94,11 @@ exports.retrieveEmployeeCount = (callback) => {
     SELECT count(*) FROM employees;
   `;
 
-  pool.query(countQuery, function (error, response) {
-    if (error) {
-      callback(error, null);
+  pool.query(countQuery, function (err, res) {
+    if (err) {
+      callback(err, null);
     } else {
-      callback(null, response.rows);
+      callback(null, res.rows);
     }
   });
 }

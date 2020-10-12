@@ -23,7 +23,6 @@ export default function Employees() {
   const [minSalary, setMinSalary] = React.useState(0);
   const [maxSalary, setMaxSalary] = React.useState(40000);
 
-  //setMinSalary(event.target.value);
   const handleMinSalarySubmit = (event) => {
     if (!(isNaN(event.target.value) || event.target.value === null || event.target.value < 0 || event.target.value === '' || event.target.value > maxSalary)) {
       setMinSalary(Number(event.target.value));

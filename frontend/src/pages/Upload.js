@@ -29,10 +29,10 @@ export default function Upload() {
       formData.append('file', new File([file], file.name, { type: 'text/csv' }));
     });
     axios.post('http://localhost:2021/users/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
-      .then((response) => {
-        console.log(response);
-      }).catch((error) => {
-        console.error(error);
+      .then((res) => {
+        console.log(res);
+      }).catch((err) => {
+        console.error(err);
       });
   }
 

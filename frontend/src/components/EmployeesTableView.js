@@ -101,9 +101,9 @@ export default function EnhancedTable(props) {
 
   async function getRowCount() {
     axios.get('http://localhost:2021/users/count')
-      .then(response => {
-        setCount(+response.data[0].count);
-      }).catch(error => console.error(error));
+      .then(res => {
+        setCount(+res.data[0].count);
+      }).catch(err => console.error(err));
   };
 
   const getRows = useCallback(() => {
@@ -115,9 +115,9 @@ export default function EnhancedTable(props) {
       sort: `${order === 'asc' ? '+' : '-'}${orderBy}`,
     }
     axios.get('http://localhost:2021/users', { params })
-      .then(response => {
-        setRows(response.data.results);
-      }).catch(error => console.error(error));
+      .then(res => {
+        setRows(res.data.results);
+      }).catch(err => console.error(err));
   }, [order, orderBy, page, minimumSalary, maximumSalary]);
 
   useEffect(() => {

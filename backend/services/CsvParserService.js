@@ -28,9 +28,9 @@ function handleData(parseResults, callback) {
     }
     rowsProcessed++;
   });
-  EmployeesModel.insertMultipleEmployees(parseResults.data.slice(1), (error, res) => {
-    if (error) {
-      callback(error, null);
+  EmployeesModel.insertMultipleEmployees(parseResults.data.slice(1), (err, res) => {
+    if (err) {
+      callback(err, null);
     } else {
       callback(null, res);
     }
