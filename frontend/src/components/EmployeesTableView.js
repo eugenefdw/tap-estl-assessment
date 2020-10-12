@@ -12,6 +12,8 @@ import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Paper from '@material-ui/core/Paper';
 
+import * as Constants from '../constants';
+
 const headCells = [
   { id: 'id', numeric: false, disablePadding: true, label: 'ID' },
   { id: 'login', numeric: false, disablePadding: false, label: 'Login' },
@@ -103,7 +105,7 @@ export default function EnhancedTable(props) {
       minSalary: minimumSalary,
       maxSalary: maximumSalary,
     }
-    axios.get('http://localhost:2021/users/count', { params })
+    axios.get(Constants.BACKEND_URL + Constants.EMPLOYEE_COUNT_API, { params })
       .then(res => {
         setCount(+res.data[0].count);
       }).catch(err => console.error(err));
@@ -117,7 +119,7 @@ export default function EnhancedTable(props) {
       limit: 30,
       sort: `${order === 'asc' ? '+' : '-'}${orderBy}`,
     }
-    axios.get('http://localhost:2021/users', { params })
+    axios.get(Constants.BACKEND_URL + Constants.EMPLOYEE_DATA_API, { params })
       .then(res => {
         setRows(res.data.results);
       }).catch(err => console.error(err));

@@ -3,6 +3,8 @@ import axios from 'axios';
 import { DropzoneArea } from 'material-ui-dropzone';
 import { Button, Container, makeStyles, Paper } from '@material-ui/core';
 
+import * as Constants from '../constants';
+
 
 const useStyles = makeStyles((theme) => ({
   dropzone: {
@@ -29,7 +31,7 @@ export default function Upload() {
     files.forEach(file => {
       formData.append('file', new File([file], file.name, { type: 'text/csv' }));
     });
-    axios.post('http://localhost:2021/users/upload', formData, { headers: { 'Content-Type': 'multipart/form-data' } })
+    axios.post(Constants.BACKEND_URL + Constants.UPLOAD_API, formData, { headers: { 'Content-Type': 'multipart/form-data' } })
       .then((res) => {
         console.log(res);
         setFiles([]);
