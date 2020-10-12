@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     margin: '25px 0px 0px 0px'
   },
-  salaryFilterRow: {
-
-  },
   table: {
     margin: '25px',
   },
