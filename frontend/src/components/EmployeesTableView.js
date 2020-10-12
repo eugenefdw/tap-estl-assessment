@@ -87,7 +87,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EnhancedTable() {
+export default function EnhancedTable(props) {
+  const { minimumSalary, maximumSalary } = props;
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('id');
@@ -107,8 +108,8 @@ export default function EnhancedTable() {
 
   const getRows = useCallback(() => {
     const params = {
-      minSalary: 0,
-      maxSalary: 40000,
+      minSalary: minimumSalary,
+      maxSalary: maximumSalary,
       offset: page * rowsPerPage,
       limit: 30,
       sort: `${order === 'asc' ? '+' : '-'}${orderBy}`,
@@ -117,7 +118,7 @@ export default function EnhancedTable() {
       .then(response => {
         setRows(response.data.results);
       }).catch(error => console.error(error));
-  }, [order, orderBy, page]);
+  }, [order, orderBy, page, minimumSalary, maximumSalary]);
 
   useEffect(() => {
     if (!firstLoaded) {
@@ -193,3 +194,10 @@ export default function EnhancedTable() {
     </div>
   );
 }
+
+EnhancedTable.propTypes = {
+  minimumSalary: PropTypes.number.isRequired,
+  maximumSalary: PropTypes.number.isRequired,
+};
+
+
