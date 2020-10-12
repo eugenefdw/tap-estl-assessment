@@ -20,13 +20,11 @@ exports.parseCsvFile = function (file, callback) {
 };
 
 function handleData(parseResults, callback) {
-  var rowsProcessed = 0;
   parseResults.data.slice(1).forEach(row => {
     var error = handleRow(row);
     if (error) {
       callback(error, null);
     }
-    rowsProcessed++;
   });
   EmployeesModel.insertMultipleEmployees(parseResults.data.slice(1), (err, res) => {
     if (err) {
