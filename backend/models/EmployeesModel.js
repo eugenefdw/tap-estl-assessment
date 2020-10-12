@@ -72,7 +72,7 @@ exports.insertSingleEmployee = (user, callback) => {
 
 exports.retrieveEmployeeData = (params, callback) => {
   var selectionQuery = `
-    SELECT * FROM employees
+    SELECT id, login, name, salary::money::numeric::float8 FROM employees
     WHERE salary >= ${params.minSalary}::float8::numeric::money
     AND   salary <= ${params.maxSalary}::float8::numeric::money
     ORDER BY ${params.column} ${params.ascending ? 'ASC' : 'DESC'}
