@@ -70,8 +70,16 @@ exports.insertSingleEmployee = (user, callback) => {
     });
 }
 
-exports.retrieveEmployeeData = (callback) => {
-  pool.query(retrieveAllEmployeesQuery, function (error, response) {
+exports.retrieveEmployeeData = (params, callback) => {
+  var selectionQuery = `
+    SELECT * FROM employees
+    WHERE salary >= ${params.minSalary}
+    AND   salary <= ${params.maxSalary}
+    ORDER BY ${params.column} ${params.ascending ? 'ASC' : 'DESC'}
+    LIMIT ${params.limit}
+    OFFSET ${params.offset};
+  `
+  pool.query(selectionQuery, function (error, response) {
     if (error) {
       callback(error, null);
     } else {
