@@ -16,7 +16,7 @@ router.post('/users/upload', (req, response) => {
   }
 
   isUploading = true;
-  parser.parseCsvFile(req.files.file, (err, res) => {
+  parser.parseCsvFile(req.files.file.data, (err, res) => {
     isUploading = false;
     if (err) {
       response.sendStatus(500);

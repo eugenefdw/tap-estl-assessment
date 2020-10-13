@@ -2,14 +2,15 @@ const Papa = require('papaparse');
 
 const EmployeesModel = require('../models/EmployeesModel');
 
-exports.parseCsvFile = function (file, callback) {
+exports.parseCsvFile = function (data, callback) {
   const config = {
     header: false,
     comments: "#",
     dynamicTyping: true,
     skipEmptyLines: true,
   }
-  var results = Papa.parse(file.data.toString('utf-8'), config);
+  console.log(data);
+  var results = Papa.parse(data.toString('utf-8'), config);
   handleData(results, (err, res) => {
     if (err) {
       callback(err, null);
