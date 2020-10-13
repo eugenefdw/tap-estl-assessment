@@ -10,14 +10,6 @@ const createTableQuery = `
     salary money
   )
 `;
-const insertSingleEmployeeQuery = `
-  INSERT INTO employees (id, login, name, salary)
-  VALUES ($1, $2, $3, $4)
-  RETURNING *;
-`;
-const retrieveAllEmployeesQuery = `
-  SELECT * FROM employees;
-`;
 
 exports.initializeTable = () => {
   pool.query(createTableQuery, function (err, res) {
@@ -57,18 +49,6 @@ exports.insertMultipleEmployees = (users, callback) => {
     }
   })
 };
-
-exports.insertSingleEmployee = (user, callback) => {
-  pool.query(insertSingleEmployeeQuery,
-    [user.id, user.login, user.name, user, salary],
-    function (err, res) {
-      if (err) {
-        callback(err, null);
-      } else {
-        callback(null, res.rows[0]);
-      }
-    });
-}
 
 exports.retrieveEmployeeData = (params, callback) => {
   var selectionQuery = `
